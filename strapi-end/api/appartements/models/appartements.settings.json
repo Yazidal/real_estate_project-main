@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "appartements",
+  "info": {
+    "name": "Appartements",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nbr_chambre": {
+      "type": "integer"
+    },
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "surface": {
+      "type": "integer"
+    },
+    "disponible": {
+      "type": "boolean"
+    },
+    "type_transaction": {
+      "type": "enumeration",
+      "enum": [
+        "vente",
+        "location"
+      ]
+    },
+    "prix": {
+      "type": "biginteger"
+    },
+    "titre": {
+      "type": "string"
+    },
+    "ville": {
+      "type": "enumeration",
+      "enum": [
+        "marrakech",
+        "regions"
+      ]
+    },
+    "type_bien": {
+      "type": "enumeration",
+      "enum": [
+        "appartements",
+        "villas",
+        "riad",
+        "terrain",
+        "commerce"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "prestations": {
+      "type": "text"
+    }
+  }
+}

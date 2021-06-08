@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "villas",
+  "info": {
+    "name": "villas",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titre": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "type_transaction": {
+      "type": "enumeration",
+      "enum": [
+        "vente",
+        "location"
+      ]
+    },
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "prix": {
+      "type": "biginteger"
+    },
+    "nbr_chambre": {
+      "type": "integer"
+    },
+    "surface": {
+      "type": "integer"
+    },
+    "disponible": {
+      "type": "boolean"
+    },
+    "ville": {
+      "type": "enumeration",
+      "enum": [
+        "marrakech",
+        "regions"
+      ]
+    },
+    "type_bien": {
+      "type": "enumeration",
+      "enum": [
+        "appartements",
+        "villas",
+        "riad",
+        "terrain",
+        "commerce"
+      ]
+    },
+    "prestations": {
+      "type": "text"
+    }
+  }
+}
