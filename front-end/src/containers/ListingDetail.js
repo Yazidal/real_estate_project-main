@@ -21,6 +21,7 @@ import Parallax from "components/Parallax/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/components.js";
 import SectionCarousel from "components/carousel.js";
 import ContactSection from "components/ContactSection.js";
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles2 = makeStyles((theme) => ({
     color: "#3C4858",
@@ -120,228 +121,6 @@ const ListingDetail = (props) => {
         
     };
 
-    const displayInteriorImages = () => {
-        let images = [];
-        
-            images.push(
-                <div key={1} className='row'>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[0] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[0].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[1] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[1].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[2] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[2].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                </div>
-            );
-
-            images.push(
-                <div key={2} className='row'>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[3] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[3].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[4] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[4].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[5] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[5].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                </div>
-            );
-
-            images.push(
-                <div key={3} className='row'>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[6] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[6].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[7] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[7].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[8] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[8].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                </div>
-            );
-
-            images.push(
-                <div key={4} className='row'>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[9] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[9].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[10] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[10].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[11] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[11].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                </div>
-            );
-
-            images.push(
-                <div key={5} className='row'>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[12] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[12].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[13] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[13].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[14] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[14].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                </div>
-            );
-
-            images.push(
-                <div key={6} className='row'>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[15] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[15].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[16] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[16].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[17] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[17].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                </div>
-            );
-
-            images.push(
-                <div key={7} className='row'>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[18] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[18].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'>
-                        {
-                            listing.images[19] ? (
-                                <div className='listingdetail__display'>
-                                    <img className='listingdetail__display__image' src={API_URL+listing.images[19].url} alt='' />
-                                </div>
-                            ) : null
-                        }
-                    </div>
-                    <div className='col-1-of-3'></div>
-                </div>
-            );
-
-        return images;
-    };
-    
     return (
 
 <div>
@@ -356,77 +135,91 @@ const ListingDetail = (props) => {
       
       <div className={classNames(classes.main, classes.mainRaised)}>
          
-        <div>
-        {listing.images ? <SectionCarousel listing={listing}/>:null} 
-          <div className={classes.container}>
+        
+        {listing.images ? <div>
+            <SectionCarousel listing={listing}/>
+            <div className={classes.container}>
               
-          <h1 className={classes2.title} style={{textAlign:"center"}}> {listing.titre}</h1>
-            <GridContainer>
-                 <GridItem xs={12} sm={12} md={3}> 
-                 <h2 style={{textAlign:"center"}}>Résumé</h2>
-                    <GridContainer>
-                        <GridItem xs={6} >
-                            <h4 className={classes2.title} > Prix</h4>
-                        </GridItem>
-                        <GridItem xs={6} >
-                            <h4>{listing.prix}€</h4> 
-                        </GridItem>
-                    </GridContainer>
-                    <GridContainer>
-                        <GridItem xs={6} >
-                            <h4 className={classes2.title} > Chambre(s)</h4>
-                        </GridItem>
-                        <GridItem xs={6} >
-                        <h4>{listing.nbr_chambre}</h4> 
-                        </GridItem>
-                    </GridContainer>
-                    <GridContainer>
-                        <GridItem xs={6} >
-                            <h4 className={classes2.title} > Surface</h4>
-                        </GridItem>
-                        <GridItem xs={6} >
-                        <h4>{listing.surface}m²</h4>
-                        </GridItem>
-                    </GridContainer>
-                    <GridContainer>
-                        <GridItem xs={6} >
-                            <h4 className={classes2.title} > type de transaction</h4>
-                        </GridItem>
-                        <GridItem xs={6} >
-                        <h4>{listing.type_transaction}/{listing.type_bien}</h4>
-                        </GridItem>
-                    </GridContainer>
-                    <GridContainer>
-                        <GridItem xs={6} >
-                            <h4 className={classes2.title} > Ville</h4>
-                        </GridItem>
-                        <GridItem xs={6} >
-                        <h4>{listing.ville}</h4>
-                        </GridItem>
-                    </GridContainer>
-
+              <h1 className={classes2.title} style={{textAlign:"center"}}> {listing.titre}</h1>
+                <GridContainer>
+                     <GridItem xs={12} sm={12} md={3}> 
+                     <h2 style={{textAlign:"center"}}>Résumé</h2>
+                        <GridContainer>
+                            <GridItem xs={6} >
+                                <h4 className={classes2.title} > Prix</h4>
+                            </GridItem>
+                            <GridItem xs={6} >
+                                <h4>{listing.prix}€</h4> 
+                            </GridItem>
+                        </GridContainer>
+                        <GridContainer>
+                            <GridItem xs={6} >
+                                <h4 className={classes2.title} > Chambre(s)</h4>
+                            </GridItem>
+                            <GridItem xs={6} >
+                            <h4>{listing.nbr_chambre}</h4> 
+                            </GridItem>
+                        </GridContainer>
+                        <GridContainer>
+                            <GridItem xs={6} >
+                                <h4 className={classes2.title} > Surface</h4>
+                            </GridItem>
+                            <GridItem xs={6} >
+                            <h4>{listing.surface}m²</h4>
+                            </GridItem>
+                        </GridContainer>
+                        <GridContainer>
+                            <GridItem xs={6} >
+                                <h4 className={classes2.title} > type de transaction</h4>
+                            </GridItem>
+                            <GridItem xs={6} >
+                            <h4>{listing.type_transaction}/{listing.type_bien}</h4>
+                            </GridItem>
+                        </GridContainer>
+                        <GridContainer>
+                            <GridItem xs={6} >
+                                <h4 className={classes2.title} > Ville</h4>
+                            </GridItem>
+                            <GridItem xs={6} >
+                            <h4>{listing.ville}</h4>
+                            </GridItem>
+                        </GridContainer>
+    
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={9} >
+                        <h2 style={{textAlign:"center"}}>Description</h2>
+                        <div className={classes.description}>
+                            {listing.description}
+                        </div>
+                    </GridItem>
+                </GridContainer>
+                    
+                <GridItem xs={12}>
+                <h2 style={{textAlign:"center"}}>Prestations</h2>
+                        <GridContainer >
+                            {displayPres()}
+                        </GridContainer>      
                 </GridItem>
-                <GridItem xs={12} sm={12} md={9} >
-                    <h2 style={{textAlign:"center"}}>Description</h2>
-                    <div className={classes.description}>
-                        {listing.description}
-                    </div>
-                </GridItem>
-            </GridContainer>
-                
-            <GridItem xs={12}>
-            <h2 style={{textAlign:"center"}}>Prestations</h2>
-                    <GridContainer >
-                        {displayPres()}
-                    </GridContainer>      
-            </GridItem>
-            <ContactSection/>
-          </div>
+                <ContactSection type_bien={listing.type_bien} type_transaction={listing.type_transaction} titre={listing.titre} />
+              </div>
+            </div>
+          
+        :  
+        <div className={classes.container}>
+        <div className={classes.section}>
+            <h3>En attente...</h3>
+            <Skeleton variant="rect" width={210} height={118} />
+            
+            <Skeleton width="20%"  />
+            <Skeleton width="40%" />
+            <Skeleton width="40%" />
         </div>
       </div>
+            } 
+         
       </div>
 
-
+      </div>
 
 
         // <div className={classNames(classes.main, classes.mainRaised)}>

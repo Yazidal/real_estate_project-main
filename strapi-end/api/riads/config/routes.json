@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/appartements",
-      "handler": "appartements.find",
+      "path": "/riads",
+      "handler": "riads.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/appartements/count",
-      "handler": "appartements.count",
+      "path": "/riads/count",
+      "handler": "riads.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/appartements/:id",
-      "handler": "appartements.findOne",
+      "path": "/riads/:id",
+      "handler": "riads.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/appartements",
-      "handler": "appartements.create",
+      "path": "/riads",
+      "handler": "riads.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/appartements/:id",
-      "handler": "appartements.update",
+      "path": "/riads/:id",
+      "handler": "riads.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/appartements/:id",
-      "handler": "appartements.delete",
+      "path": "/riads/:id",
+      "handler": "riads.delete",
       "config": {
         "policies": []
       }

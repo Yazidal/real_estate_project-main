@@ -4,10 +4,14 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
 
 // @material-ui/icons
-
+import InfoIcon from '@material-ui/icons/Info';
 import FiberNewIcon from '@material-ui/icons/FiberNew';
 // core components
 
@@ -15,18 +19,14 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import NavPills from "components/NavPills/NavPills.js";
 
+import Ccard from 'components/Card.js';
 
-import studio1 from "assets/img/examples/studio-1.jpg";
 
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import {GQL_URL,API_URL}from'config.js';
 
-import Card from "components/Card/Card.js";
+import Grid from '@material-ui/core/Grid';
+
 
 import imagesStyles from "assets/jss/material-kit-react/imagesStyles.js";
 
@@ -40,6 +40,11 @@ const style = {
 };
 
 const useStyles = makeStyles(style);
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
+
 
 export default function Demo() {
   const classes = useStyles();
@@ -60,6 +65,7 @@ export default function Demo() {
                 type_bien                
                 nbr_chambre
                 prix
+                description
                 surface
                 ville
                 titre
@@ -95,6 +101,7 @@ export default function Demo() {
                 nbr_chambre
                 prix
                 surface
+                description
                 ville
                 titre
                 images{url}
@@ -124,7 +131,8 @@ export default function Demo() {
             {
                 id
                 type_transaction
-                type_bien                
+                type_bien        
+                description        
                 nbr_chambre
                 prix
                 surface
@@ -158,7 +166,8 @@ export default function Demo() {
             {
                 id
                 type_transaction
-                type_bien                
+                type_bien        
+                description        
                 nbr_chambre
                 prix
                 surface
@@ -184,115 +193,404 @@ export default function Demo() {
         .catch(err => {
             console.log(err);
         });
+      
+          // extraction data riads
+    graphqlQuery= {
+      query:`query  {
+          riads(sort:"created_at:desc",limit:1,where:{type_transaction:"vente"})
+          {
+              id
+              type_transaction
+              type_bien                
+              nbr_chambre
+              description
+              prix
+              surface
+              ville
+              titre
+              images{url}
+          }
+          }`
+  };
+      fetch(GQL_URL,{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(graphqlQuery)
+      })
+      .then(res => {
+          return res.json()
+      })
+      .then(res => {
+          setVente(oldArray => [...oldArray, res.data.riads]);
+      })
+      .catch(err => {
+          console.log(err);
+      });
+
+      
+  graphqlQuery= {
+      query:`query  {
+          riads(sort:"created_at:desc",limit:1,where:{type_transaction:"location"})
+          {
+              id
+              type_transaction
+              type_bien                
+              nbr_chambre
+              description
+              prix
+              surface
+              ville
+              titre
+              images{url}
+          }
+          }`
+  };
+      fetch(GQL_URL,{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(graphqlQuery)
+      })
+      .then(res => {
+          return res.json()
+      })
+      .then(res => {
+          setLocation(oldArray => [...oldArray, res.data.riads]);
+      })
+      .catch(err => {
+          console.log(err);
+      });
+    
+        // extraction data commerces
+    graphqlQuery= {
+      query:`query  {
+          commerces(sort:"created_at:desc",limit:1,where:{type_transaction:"vente"})
+          {
+              id
+              type_transaction
+              type_bien                
+              description
+              prix
+              surface
+              ville
+              titre
+              images{url}
+          }
+          }`
+  };
+      fetch(GQL_URL,{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(graphqlQuery)
+      })
+      .then(res => {
+          return res.json()
+      })
+      .then(res => {
+          setVente(oldArray => [...oldArray, res.data.commerces]);
+      })
+      .catch(err => {
+          console.log(err);
+      });
+
+      
+  graphqlQuery= {
+      query:`query  {
+          commerces(sort:"created_at:desc",limit:1,where:{type_transaction:"location"})
+          {
+              id
+              type_transaction
+              type_bien                
+              description
+              prix
+              surface
+              ville
+              titre
+              images{url}
+          }
+          }`
+  };
+      fetch(GQL_URL,{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(graphqlQuery)
+      })
+      .then(res => {
+          return res.json()
+      })
+      .then(res => {
+          setLocation(oldArray => [...oldArray, res.data.commerces]);
+      })
+      .catch(err => {
+          console.log(err);
+      });
+    
+          // extraction data terrains
+    graphqlQuery= {
+      query:`query  {
+          terrains(sort:"created_at:desc",limit:1,where:{type_transaction:"vente"})
+          {
+              id
+              type_transaction
+              type_bien                
+              description
+              prix
+              surface
+              ville
+              titre
+              images{url}
+          }
+          }`
+  };
+      fetch(GQL_URL,{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(graphqlQuery)
+      })
+      .then(res => {
+          return res.json()
+      })
+      .then(res => {
+          setVente(oldArray => [...oldArray, res.data.terrains]);
+      })
+      .catch(err => {
+          console.log(err);
+      });
+
+      
+  graphqlQuery= {
+      query:`query  {
+          terrains(sort:"created_at:desc",limit:1,where:{type_transaction:"location"})
+          {
+              id
+              type_transaction
+              type_bien                
+              description
+              prix
+              surface
+              ville
+              titre
+              images{url}
+          }
+          }`
+  };
+      fetch(GQL_URL,{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(graphqlQuery)
+      })
+      .then(res => {
+          return res.json()
+      })
+      .then(res => {
+          setLocation(oldArray => [...oldArray, res.data.terrains]);
+      })
+      .catch(err => {
+          console.log(err);
+      });
+    
+
+
+
+
     }, []);
     console.log("location fin",location);
     console.log("vente fin ",vente);
-  return (
-      <div className={classes.section}>
-       <div className={classes.container}>
-            <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-              <h2>Nos dernieres offres</h2>
-                <NavPills
-                  alignCenter
-                  color="primary"
-                  tabs={[
-                    {
-                      tabButton: "Vente",
-                      tabIcon:FiberNewIcon,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={6}>
-                            {
-                            vente[0] ? <img
-                            alt="..."
-                            src={API_URL+vente[0][0].images[0].url}
-                            className={navImageClasses}
-                          />: null
-                            }
-                           
-                           {
-                            vente[1] ? <img
-                            alt="..."
-                            src={API_URL+vente[1][0].images[0].url}
-                            className={navImageClasses}
-                          />: null
-                            }
-                            <img
-                              alt="..."
-                              src={work3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={6}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work5}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      ),
-                    },
-                    {
-                      tabButton: "Location",
-                      tabIcon: FiberNewIcon,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={6}>
+
+    
+    function fetch_data(){
+      if (vente.length !==0 && location.length !==0){
+        if(vente[1] && location[1]){
+          return (
+                  <GridContainer justify="center">
+                    <GridItem xs={12} sm={12} className={classes.navWrapper}>
+                    <h2>Nos dernieres offres</h2>
+                    <NavPills
+                        alignCenter
+                        color="primary"
+                        tabs={[
                           {
-                            location[0] ?     
-                            <Card>
-                            <img className={classes.imgCard} src={API_URL+location[0][0].images[0].url} alt="Card-img" />
-                            <div className={classes.imgCardOverlay}>
-                              <h4 className={classes.cardTitle}>{location[0][0].titre}</h4>
-                              <p>Surface: {location[0][0].surface} m²</p>
-                              <p>Chambre(s): {location[0][0].nbr_chambre}</p>
-                              <h5>Prix: {location[0][0].prix}</h5>
-                            </div>
-                          </Card>
-                          : null
-                            }
-                            {
-                            location[1] ? <img
-                            alt="..."
-                            src={API_URL+location[1][0].images[0].url}
-                            className={navImageClasses}
-                          />: null
-                            }
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={6}>
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      ),
-                    },
-                  ]}
-                />
-              </GridItem>
-            </GridContainer>
-          </div>
+                            tabButton: "Vente",
+                            tabIcon:FiberNewIcon,
+                            tabContent: (
+                             
+                          
+                              <GridContainer spacing={2}>
+                              {vente.map((tile) => (
+                                <GridItem xs={12} sm={6} md={4}>
+                                  { tile.length !==0 ? 
+                                  <Ccard
+                                    id={tile[0].id}
+                                    type_bien={tile[0].type_bien}
+                                    disponible={tile[0].disponible}
+                                    description={tile[0].description}
+                                    prix={tile[0].prix}
+                                    surface={tile[0].surface}
+                                    type_transaction={tile[0].type_transaction}
+                                    nbr_chambre={tile[0].nbr_chambre}
+                                    titre={tile[0].titre}
+                                    ville={tile[0].ville}
+                                    images={tile[0].images}
+                                  />
+                                  :null}
+                                </GridItem>
+                              ))}
+                              </GridContainer>
+                            
+                            ),
+                          },
+                          {
+                            tabButton: "Location",
+                            tabIcon: FiberNewIcon,
+                            tabContent: (
+                              <GridContainer spacing={2}>
+                              {location.map((tile) => (
+                                <GridItem xs={12} sm={6} md={4}>
+                                  { tile.length !==0 ? 
+                                   <Ccard
+                                   id={tile[0].id}
+                                   type_bien={tile[0].type_bien}
+                                   disponible={tile[0].disponible}
+                                   description={tile[0].description}
+                                   prix={tile[0].prix}
+                                   surface={tile[0].surface}
+                                   type_transaction={tile[0].type_transaction}
+                                   nbr_chambre={tile[0].nbr_chambre}
+                                   titre={tile[0].titre}
+                                   ville={tile[0].ville}
+                                   images={tile[0].images}
+                                 />
+                                  :null}
+                                 
+                                </GridItem>
+                              ))}
+                              </GridContainer>
+                            )
+                          },
+                        ]}
+                      />
+                    </GridItem>
+                  </GridContainer>
+               
+      
+        );
+        }
+      }
+    };
+    
+  return (
+        <div className={classes.section}>
+            <div className={classes.container}>
+              {fetch_data()}         
+           </div> 
         </div>
      
-
   );
 }
+
+
+// return (
+//   <GridContainer justify="center">
+//     <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+//     <h2>Nos dernieres offres</h2>
+//       <NavPills
+//         alignCenter
+//         color="primary"
+//         tabs={[
+//           {
+//             tabButton: "Vente",
+//             tabIcon:FiberNewIcon,
+//             tabContent: (
+//               <GridContainer justify="center">
+//                 <GridItem xs={6} sm={6} md={6}>
+//                    <img
+//                   alt="..."
+//                   src={API_URL+vente[0][0].images[0].url}
+//                   className={navImageClasses}
+//                 />
+//                  <img
+//                   alt="..."
+//                   src={API_URL+vente[1][0].images[0].url}
+//                   className={navImageClasses}
+//                 />
+//                   <img
+//                     alt="..."
+//                     src={work3}
+//                     className={navImageClasses}
+//                   />
+//                 </GridItem>
+//                 <GridItem xs={6} sm={6} md={6}>
+//                   <img
+//                     alt="..."
+//                     src={work4}
+//                     className={navImageClasses}
+//                   />
+//                   <img
+//                     alt="..."
+//                     src={work5}
+//                     className={navImageClasses}
+//                   />
+//                 </GridItem>
+//               </GridContainer>
+//             ),
+//           },
+//           {
+//             tabButton: "Location",
+//             tabIcon: FiberNewIcon,
+//             tabContent: (
+//               <GridContainer justify="center">
+//                 <GridItem xs={12} sm={12} md={6}>
+                   
+//                   <Card>
+//                   <img className={classes.imgCard} src={API_URL+location[0][0].images[0].url} alt="Card-img" />
+//                   <div className={classes.imgCardOverlay}>
+//                     <h4 className={classes.cardTitle}>{location[0][0].titre}</h4>
+//                     <p>Surface: {location[0][0].surface} m²</p>
+//                     <p>Chambre(s): {location[0][0].nbr_chambre}</p>
+//                     <h5>Prix: {location[0][0].prix}</h5>
+//                   </div>
+//                 </Card>
+//                 <img
+//                   alt="..."
+//                   src={API_URL+location[1][0].images[0].url}
+//                   className={navImageClasses}
+//                 />
+//                 </GridItem>
+//                 <GridItem xs={12} sm={12} md={6}>
+//                   <img
+//                     alt="..."
+//                     src={work2}
+//                     className={navImageClasses}
+//                   />
+//                   <img
+//                     alt="..."
+//                     src={work1}
+//                     className={navImageClasses}
+//                   />
+//                   <img
+//                     alt="..."
+//                     src={studio1}
+//                     className={navImageClasses}
+//                   />
+//                 </GridItem>
+//               </GridContainer>
+//             ),
+//           },
+//         ]}
+//       />
+//     </GridItem>
+//   </GridContainer>
+
+
+// );

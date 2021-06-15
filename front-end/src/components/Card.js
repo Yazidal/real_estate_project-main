@@ -35,12 +35,12 @@ const Ccard = (props) => {
   
     return (
 
-
+      <a href={`/listings/${props.type_bien}/${props.id}`} >
         <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={API_URL+props.images[0].url}
+            image={props.images.length !==0 ? API_URL+props.images[0].url:null}
             title={props.titre}
           />
           <CardContent>
@@ -52,7 +52,7 @@ const Ccard = (props) => {
                      <Typography variant="subtitle1">Prix</Typography>
                 </Grid>
                 <Grid item >
-                     <Typography variant="subtitle1">{numberWithCommas(props.prix)} €</Typography>
+                     <Typography variant="subtitle1">{ props.prix !==0?numberWithCommas(props.prix)+" €":"Sur Demande"}</Typography>
                 </Grid>
             </Grid>
             <Grid container spacing={1}>
@@ -77,15 +77,9 @@ const Ccard = (props) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-        {/* <Link  href={`/listings/${props.type_bien}/${props.id}`}>View Listing</Link> */}
-        <Button href={`/listings/${props.type_bien}/${props.id}`} color="primary"variant="outlined">
-            VOIR LE BIEN    
-        </Button>
-        </CardActions>
+
       </Card>
-
-
+      </a>
 
         // <div className='card'>
         //     <h3 className='card__title'>{props.titre}</h3>

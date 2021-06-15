@@ -12,7 +12,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 const useStyles = makeStyles(styles);
 
 
-const Villas = (props) => {
+const Terrains = (props) => {
     const [listings, setListings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [listingsPerPage, setListingsPerPage] = useState(9);
@@ -28,9 +28,9 @@ const Villas = (props) => {
 
 
     const graphqlQuery= {
-        query:`query villas($type_transaction:String!)
+        query:`query terrains($type_transaction:String!)
         {
-        villas(sort:"created_at:desc", where:{type_transaction:$type_transaction})
+        terrains(sort:"created_at:desc", where:{type_transaction:$type_transaction})
         {
             id
             created_at
@@ -41,7 +41,6 @@ const Villas = (props) => {
             surface
             disponible
             type_bien
-            nbr_chambre
             ville
             titre
             images{url}
@@ -91,7 +90,7 @@ const Villas = (props) => {
              
          }).then(res=>{
            console.log("resu",res);
-            setListings(res["villas"]);
+            setListings(res["terrains"]);
              window.scrollTo(0, 0);
          })
          .catch(err => {
@@ -156,7 +155,6 @@ const Villas = (props) => {
         
             );
 
-
 };
 
-export default Villas;
+export default Terrains;

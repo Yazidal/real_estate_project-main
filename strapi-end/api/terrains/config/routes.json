@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/appartements",
-      "handler": "appartements.find",
+      "path": "/terrains",
+      "handler": "terrains.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/appartements/count",
-      "handler": "appartements.count",
+      "path": "/terrains/count",
+      "handler": "terrains.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/appartements/:id",
-      "handler": "appartements.findOne",
+      "path": "/terrains/:id",
+      "handler": "terrains.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/appartements",
-      "handler": "appartements.create",
+      "path": "/terrains",
+      "handler": "terrains.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/appartements/:id",
-      "handler": "appartements.update",
+      "path": "/terrains/:id",
+      "handler": "terrains.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/appartements/:id",
-      "handler": "appartements.delete",
+      "path": "/terrains/:id",
+      "handler": "terrains.delete",
       "config": {
         "policies": []
       }

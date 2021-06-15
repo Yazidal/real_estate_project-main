@@ -39,16 +39,19 @@ export default function HeaderLinks(props) {
             <Link to="/appartements/vente" className={classes.dropdownLink}>
               Appartement
             </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+            <Link to="/villas/vente" className={classes.dropdownLink}>
             Villa
             </Link>,
-            <Link to="/" className={classes.dropdownLink}>
-            Riad
+            <Link to="/riads/vente/false" className={classes.dropdownLink}>
+            Riad à renover
             </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+             <Link to="/riads/vente/true" className={classes.dropdownLink}>
+             Riad renové
+             </Link>,
+            <Link to="/commerces/vente" className={classes.dropdownLink}>
             Commerce
             </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+            <Link to="/terrains/vente" className={classes.dropdownLink}>
             Terrain
             </Link>
           ]}
@@ -67,16 +70,19 @@ export default function HeaderLinks(props) {
             <Link to="/appartements/location" className={classes.dropdownLink}>
               Appartement
             </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+            <Link to="/villas/location" className={classes.dropdownLink}>
             Villa
             </Link>,
-            <Link to="/" className={classes.dropdownLink}>
-            Riad
-            </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+              <Link to="/riads/location/false" className={classes.dropdownLink}>
+              Riad à renover
+              </Link>,
+               <Link to="/riads/location/true" className={classes.dropdownLink}>
+               Riad renové
+               </Link>,
+            <Link to="/commerces/location" className={classes.dropdownLink}>
             Commerce
             </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+            <Link to="/terrains/location" className={classes.dropdownLink}>
             Terrain
             </Link>
           ]}
@@ -84,20 +90,17 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
+          href="/contact"
           color="transparent"
-          target="_blank"
+          
           className={classes.navLink}
         >
-          <CloudDownload className={classes.icons} /> Download
+           Contactez-nous
         </Button>
       </ListItem>
-      <ListItem className={classes.listItem}>
-        {/*<Tooltip title="Delete">
-          <IconButton aria-label="Delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>*/}
+
+      {/* <ListItem className={classes.listItem}>
+
         <Tooltip
           id="instagram-twitter"
           title="Follow us on twitter"
@@ -147,7 +150,7 @@ export default function HeaderLinks(props) {
             <i className={classes.socialIcons + " fab fa-instagram"} />
           </Button>
         </Tooltip>
-      </ListItem>
+      </ListItem> */}
     </List>
   );
 }

@@ -1,120 +1,67 @@
-// import React, { useState, useEffect } from 'react';
-// import { Helmet } from 'react-helmet';
-// import axios from 'axios';
-// import { connect } from 'react-redux';
-// import { setAlert } from '../actions/alert';
-// import Loader from 'react-loader-spinner';
-// import PropTypes from 'prop-types';
+import React from 'react';
 
-// const Contact = ({ setAlert }) => {
-//     useEffect(() => {
-//         window.scrollTo(0, 0);
-//     }, []);
+import { makeStyles } from '@material-ui/core/styles';
+import classNames from "classnames";
 
-//     const [formData, setFormData] = useState({
-//         name: '',
-//         email: '',
-//         subject: '',
-//         message: ''
-//     });
+import Parallax from "components/Parallax/Parallax.js";
+import styles from "assets/jss/material-kit-react/views/components.js";
+import {primaryColor} from "assets/jss/material-kit-react.js";
 
-//     const { name, email, subject, message } = formData;
+import ContactSection from "components/ContactSection.js";
 
-//     const [loading, setLoading] = useState(false);
+const useStyles = makeStyles(styles);
 
-//     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-//     const onSubmit = e => {
-//         e.preventDefault();
-
-//         const config = {
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         };
-
-//         setLoading(true);
-//         axios.post(`${process.env.REACT_APP_API_URL}/api/contacts/`, { name, email, subject, message }, config)
-//         .then(res => {
-//             setAlert('Message Sent', 'success');
-//             setLoading(false);
-//             window.scrollTo(0, 0);
-//         })
-//         .catch(err => {
-//             setAlert('Error with Sending Message', 'error');
-//             setLoading(false);
-//             window.scrollTo(0, 0);
-//         })
-//     };
-
-//     return (
-//         <div className='contact'>
-//             <Helmet>
-//                 <title>Realest Estate - Contact</title>
-//                 <meta
-//                     name='description'
-//                     content='Contact us'
-//                 />
-//             </Helmet>
-//             <form className='contact__form' onSubmit={e => onSubmit(e)}>
-//                 <label className='contact__form__label' htmlFor='name'>Name*</label>
-//                 <input 
-//                     className='contact__form__input' 
-//                     name='name' 
-//                     type='text' 
-//                     placeholder='Full Name' 
-//                     onChange={e => onChange(e)} 
-//                     value={name} 
-//                     required 
-//                 />
-//                 <label className='contact__form__label' htmlFor='email'>Email*</label>
-//                 <input 
-//                     className='contact__form__input' 
-//                     name='email' 
-//                     type='email' 
-//                     placeholder='example@gmail.com' 
-//                     onChange={e => onChange(e)} 
-//                     value={email} 
-//                     required 
-//                 />
-//                 <label className='contact__form__label' htmlFor='subject'>Subject*</label>
-//                 <input 
-//                     className='contact__form__input' 
-//                     name='subject' 
-//                     type='text' 
-//                     placeholder='Buying Home' 
-//                     onChange={e => onChange(e)} 
-//                     value={subject} 
-//                     required 
-//                 />
-//                 <label className='contact__form__label' htmlFor='message'>Message</label>
-//                 <textarea 
-//                     className='contact__form__textarea'
-//                     name='message'
-//                     cols='30'
-//                     rows='10'
-//                     placeholder='Message'
-//                     onChange={e => onChange(e)} 
-//                     value={message} 
-//                 />
-//                 {loading ?
-//                     <div className='contact__form__loader'>
-//                         <Loader
-//                             type="Oval"
-//                             color="#424242"
-//                             height={50}
-//                             width={50}
-//                         />
-//                     </div> :
-//                     <button className='contact__form__button' htmltype='submit'>Send</button>
-//                 }
-//             </form>
-//         </div>
-//     );
-// };
-
-// Contact.propTypes = {
-//     setAlert: PropTypes.func.isRequired
-// };
-
-// export default Contact;
+const Contact = (props) => {
+    const classes = useStyles();
+    return (
+        <div>
+            <Parallax
+                small
+                filter
+                image={require("assets/img/bgmedina.jpg").default}
+            />
+            <div className={classNames(classes.main, classes.mainRaised)}>
+                <div className={classes.container}>
+                    <h2 style={{color:primaryColor,textAlign:"center",margin:20}}>Votre décision est prise «Vous achetez, Vous louez ou Vous vendez !»</h2>
+                    <p>
+                        Alors n’hésitez plus,<strong> rejoignez votre agent immobilier de Marrakech ImmoAlaoui </strong> une compétente est disponible.
+                        Chez ImmoAlaoui les fondements reposent sur le sérieux, la transparence et le professionnalisme au service de ses clients.
+                        De la transaction immobilière (neuves et anciennes) à la gestion de syndic d’immeubles, de copropriétés et locatives, notre connaissance du marché et notre écoute nous permettent de vous offrir des avantages considérables :
+                    </p>
+                    <ul>
+                        <li>
+                        Un réseau de vendeur et d’acheteur
+                        </li>
+                        <li>
+                        Une gamme de produits adaptés à vos critères
+                        </li>
+                        <li>
+                        Une personnalisation des dossiers
+                        </li>
+                        <li>
+                        Des capacités de communications
+                        </li>
+                        <li>
+                        L’estimation de votre bien
+                        </li>
+                        <li>
+                        L’efficacité et la sécurité d’un bien conforme aux réglementations
+                        </li>
+                        <li>
+                        L’aide à la constitution de votre dossier d’offre de prêt
+                        </li>
+                        <li>
+                        L’étude de votre patrimoine avec l’objectif d’une défiscalisation
+                        </li>
+                    </ul>
+                    <p>
+                    <span style={{color:primaryColor}}>Chez ImmoAlaoui </span>«la sérénité dans l’immobilière» n’est pas de vain mot. La sérénité et la tranquillité lors d’un investissement immobilière c’est non seulement sérieux mais aussi précieux à nos yeux!
+                    Pour bien vendre votre bien immobilier, confiez- le à Yosra immobilière.
+                    </p>
+                    <ContactSection />
+                </div>
+            </div>
+        </div>
+    );
+};
+export default Contact;

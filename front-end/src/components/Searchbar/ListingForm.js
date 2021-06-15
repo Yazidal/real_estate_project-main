@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
-
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -19,19 +18,6 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 
 import styles from "assets/jss/material-kit-react/views/componentsSections/completedStyle.js";
-import CardHeader from "components/Card/CardHeader.js";
-
-const useStyles3 = makeStyles((theme) => ({
-  cardHeader: {
-    width: "auto",
-    textAlign: "center",
-    marginLeft: "20px",
-    marginRight: "20px",
-    marginTop: "-40px",
-    padding: "20px 0",
-    marginBottom: "15px",
-  }
-}));
 
 const useStyles2 = makeStyles(styles);
 const useStyles = makeStyles((theme) => ({
@@ -69,7 +55,7 @@ const ListingForm = (props) => {
 
     const classes = useStyles();
     const classes2 = useStyles2();
-    const classes3 = useStyles3();
+   
 
     const provinceData = ['location', 'vente'];
     const cityData  = {
@@ -102,14 +88,31 @@ const ListingForm = (props) => {
     }
 
     const  onSubmit =  e => {
+      let graphqlQuery=null;
         console.log(e.target[3].value);
         e.preventDefault();
-        const t=e.target[2].value;
+        let t=e.target[2].value;
         console.log(t);
-        let graphqlQuery="";
+        let rres=null;
+        let r="";
+        let nbr_chambre="nbr_chambre";
+        let rwhere="";
         setLoading(true);
 
+       if(e.target[2].value=="riad_r"){
+        t="riads";
+        r="renover";
+        rwhere="renover:true";
+        rres= true;
        
+       }else if(e.target[2].value=="riad"){
+        t="riads";
+        r="renover";
+        rwhere="renover:false";
+        rres= false;
+       }else if(e.target[2].value=="commerces"||e.target[2].value=="terrains"){
+        nbr_chambre ="";
+       }
 
             if(e.target[3].value=="De 0 à 200 000") {
                 console.log(e.target[1].value);
@@ -117,22 +120,22 @@ const ListingForm = (props) => {
                  graphqlQuery= {
                     query:`query `+t+`($type_transaction:String!,$ville:String,$prix_gte:Int!,$prix_lte:Int!)
                     {
-                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte})
+                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte,`+rwhere+`})
                     {
-                        id
-                        created_at
-                        updated_at
-                        type_transaction
-                        nbr_chambre
-                        description
-                        prix
-                        surface
-                        type_bien
-                        disponible
-                        ville
-                        titre
-                        
-                        images{url}
+                      id
+                      created_at
+                      updated_at
+                      type_transaction
+                      description
+                      prix
+                      surface
+                      type_bien
+                      disponible
+                      ville
+                      titre
+                      images{url}
+                      `+nbr_chambre+`
+                      `+r+`
                     }
                     }`,
                     variables:{
@@ -145,28 +148,27 @@ const ListingForm = (props) => {
                     }
                 };
             }else if(e.target[3].value=="De 200 000 à 500 000"){
-
                 console.log("De 200 000 à 500 000");
 
                  graphqlQuery= {
                     query:`query `+t+`($type_transaction:String!,$ville:String,$prix_gte:Int!,$prix_lte:Int!)
                     {
-                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte})
+                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte,`+rwhere+`})
                     {
                         id
                         created_at
                         updated_at
                         type_transaction
-                        nbr_chambre
                         description
                         prix
                         surface
                         type_bien
-                        
                         disponible
                         ville
                         titre
                         images{url}
+                        `+nbr_chambre+`
+                        `+r+`
                     }
                     }`,
                     variables:{
@@ -174,7 +176,8 @@ const ListingForm = (props) => {
                         type_transaction: e.target[1].value,
                         ville: e.target[0].value,
                         prix_gte:200000,
-                        prix_lte:500000
+                        prix_lte:500000,
+                        
     
                     }
                 };
@@ -185,22 +188,22 @@ const ListingForm = (props) => {
                 graphqlQuery= {
                     query:`query `+t+`($type_transaction:String!,$ville:String,$prix_gte:Int!,$prix_lte:Int!)
                     {
-                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte})
+                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte,`+rwhere+`})
                     {
-                        id
-                        created_at
-                        updated_at
-                        type_transaction
-                        nbr_chambre
-                        description
-                        prix
-                        surface
-                        
-                        disponible
-                        type_bien
-                        ville
-                        titre
-                        images{url}
+                      id
+                      created_at
+                      updated_at
+                      type_transaction
+                      description
+                      prix
+                      surface
+                      type_bien
+                      disponible
+                      ville
+                      titre
+                      images{url}
+                      `+nbr_chambre+`
+                      `+r+`
                     }
                     }`,
                     variables:{
@@ -219,22 +222,22 @@ const ListingForm = (props) => {
                 graphqlQuery= {
                     query:`query `+t+`($type_transaction:String!,$ville:String,$prix_gte:Int!)
                     {
-                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte})
+                    `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte,`+rwhere+`})
                     {
-                        id
-                        created_at
-                        updated_at
-                        type_transaction
-                        type_bien
-                        description
-                        
-                        nbr_chambre
-                        prix
-                        surface
-                        disponible
-                        ville
-                        titre
-                        images{url}
+                      id
+                      created_at
+                      updated_at
+                      type_transaction
+                      description
+                      prix
+                      surface
+                      type_bien
+                      disponible
+                      ville
+                      titre
+                      images{url}
+                      `+nbr_chambre+`
+                      `+r+`
                     }
                     }`,
                     variables:{
@@ -253,22 +256,22 @@ const ListingForm = (props) => {
               graphqlQuery= {
                   query:`query `+t+`($type_transaction:String!,$ville:String,$prix_gte:Int!,$prix_lte:Int!)
                   {
-                  `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte})
+                  `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte,`+rwhere+`})
                   {
-                      id
-                      created_at
-                      updated_at
-                      type_transaction
-                      type_bien
-                      description
-                      nbr_chambre
-                      prix
-                      surface
-                      disponible
-                      
-                      ville
-                      titre
-                      images{url}
+                    id
+                    created_at
+                    updated_at
+                    type_transaction
+                    description
+                    prix
+                    surface
+                    type_bien
+                    disponible
+                    ville
+                    titre
+                    images{url}
+                    `+nbr_chambre+`
+                    `+r+`
                   }
                   }`,
                   variables:{
@@ -285,22 +288,22 @@ const ListingForm = (props) => {
             graphqlQuery= {
                 query:`query `+t+`($type_transaction:String!,$ville:String,$prix_gte:Int!,$prix_lte:Int!)
                 {
-                `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte})
+                `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte, prix_lte:$prix_lte,`+rwhere+`})
                 {
-                    id
-                    created_at
-                    updated_at
-                    type_transaction
-                    type_bien
-                    description
-                    
-                    nbr_chambre
-                    prix
-                    surface
-                    disponible
-                    ville
-                    titre
-                    images{url}
+                  id
+                  created_at
+                  updated_at
+                  type_transaction
+                  description
+                  prix
+                  surface
+                  type_bien
+                  disponible
+                  ville
+                  titre
+                  images{url}
+                  `+nbr_chambre+`
+                  `+r+`
                 }
                 }`,
                 variables:{
@@ -317,22 +320,22 @@ const ListingForm = (props) => {
           graphqlQuery= {
               query:`query `+t+`($type_transaction:String!,$ville:String,$prix_gte:Int!)
               {
-              `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte})
+              `+t+`(sort:"created_at:desc", where:{ville:$ville, type_transaction:$type_transaction, prix_gte:$prix_gte,`+rwhere+`})
               {
-                  id
-                  created_at
-                  updated_at
-                  type_transaction
-                  type_bien
-                  
-                  description
-                  nbr_chambre
-                  prix
-                  surface
-                  disponible
-                  ville
-                  titre
-                  images{url}
+                id
+                created_at
+                updated_at
+                type_transaction
+                description
+                prix
+                surface
+                type_bien
+                disponible
+                ville
+                titre
+                images{url}
+                `+nbr_chambre+`
+                `+r+`
               }
               }`,
               variables:{
@@ -404,9 +407,7 @@ const ListingForm = (props) => {
                 name='Marrakech_Regions'
                 onChange={onChange}
               >
-                <MenuItem value="" disabled>
-            Placeholder
-          </MenuItem>
+                
                 <MenuItem value="marrakech">Marrakech</MenuItem>
                 <MenuItem value="regions">Regions</MenuItem>
               </Select>
@@ -441,8 +442,8 @@ const ListingForm = (props) => {
                 <MenuItem value="villas">Villa</MenuItem>
                 <MenuItem value="riad_r">Riad rénové</MenuItem>
                 <MenuItem value="riad">Riad à rénover</MenuItem>
-                <MenuItem value="commerce">Commerce</MenuItem>
-                <MenuItem value="terrian">Terrain</MenuItem>
+                <MenuItem value="commerces">Commerce</MenuItem>
+                <MenuItem value="terrains">Terrain</MenuItem>
               </Select>
               </FormControl>
 

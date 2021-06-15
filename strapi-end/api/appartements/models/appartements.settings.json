@@ -23,13 +23,15 @@
         "videos"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "surface": {
       "type": "integer"
     },
     "disponible": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "type_transaction": {
       "type": "enumeration",
@@ -56,10 +58,11 @@
       "enum": [
         "appartements",
         "villas",
-        "riad",
-        "terrain",
-        "commerce"
-      ]
+        "riads",
+        "terrains",
+        "commerces"
+      ],
+      "default": "appartements"
     },
     "description": {
       "type": "text"

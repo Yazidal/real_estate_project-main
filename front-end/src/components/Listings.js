@@ -35,15 +35,15 @@ const Llistings = ({ listings }) => {
 
         for (let i = 0; i < listings.length; i += 3) {
             result.push(
-                <GridContainer justify="center">
+                <GridContainer justify="center" spacing={2} >
             
-                    <GridItem xs={12} sm={12} md={4} >
+                    <GridItem xs={12} sm={6} md={4}>
                     {listingsOnPage[i]}
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={4}>
+                    <GridItem xs={12} sm={6} md={4}>
                     {listingsOnPage[i+1] ? listingsOnPage[i+1] : null}
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={4}>
+                    <GridItem xs={12} sm={6} md={4}>
                     {listingsOnPage[i+2] ? listingsOnPage[i+2] : null}
                     </GridItem>
                

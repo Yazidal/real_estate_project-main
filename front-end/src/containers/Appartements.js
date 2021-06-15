@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import Listings from '../components/Listings';
-import Pagination from '../components/Pagination';
+import Pagination from 'components/Pagination.js';
 import {GQL_URL}from'../config.js';
+import Parallax from "components/Parallax/Parallax.js";
+import styles from "assets/jss/material-kit-react/views/components.js";
+import { makeStyles } from '@material-ui/core/styles';
+import classNames from "classnames";
+import Skeleton from '@material-ui/lab/Skeleton';
+
+
+const useStyles = makeStyles(styles);
+
 
 const Appartements = (props) => {
     const [listings, setListings] = useState([]);
@@ -15,6 +23,8 @@ const Appartements = (props) => {
     const currentListings = listings.slice(indexOfFirstListing, indexOfLastListing);
     const t =props.match.params.type_transaction;
     console.log("t:",t);
+
+    const classes = useStyles();
 
 
     const graphqlQuery= {
@@ -63,7 +73,6 @@ const Appartements = (props) => {
         }
     };
     
-
     useEffect(()=>{
         window.scrollTo(0, 0);
 
@@ -95,39 +104,57 @@ const Appartements = (props) => {
 
 
 
-    return (
-        <main className='home'>
-            <Helmet>
-                <title>Realest Estate - Appartements</title>
-                <meta
-                    name='description'
-                    content='Appartemnt page'
-                />
-            </Helmet>
+        return (
 
-            <section className='home_listings'>
-                <Listings listings={currentListings} />
-            </section>
-            <section className='home__pagination'>
-                <div className='row'>
-                    {
-                        listings.length !== 0 ? (
-                            <Pagination
-                                itemsPerPage={listingsPerPage}
-                                count={listings.length}
-                                visitPage={visitPage}
-                                previous={previous_number}
-                                next={next_number}
-                                active={active}
-                                setActive={setActive}
-                            />
-                        ) : null
-                    }
+            <div>
+                <Parallax
+                small
+                filter
+                image={require("assets/img/bgkech.jpg").default}
+              />
+        
+                <div className={classNames(classes.main, classes.mainRaised)}>
+                { 
+                              listings.length !==0
+                              ?
+                              <div>
+                                  <Listings listings={currentListings} />
+        
+                                  <div>
+                                      <div className='row' >
+                                          {
+                                              listings.length !== 0 ? (
+                                                  <Pagination
+                                                      itemsPerPage={listingsPerPage}
+                                                      count={listings.length}
+                                                      visitPage={visitPage}
+                                                      previous={previous_number}
+                                                      next={next_number}
+                                                      active={active}
+                                                      setActive={setActive}
+                                                  />
+                                              ) : null
+                                          }
+                                      </div>
+                                  </div>
+                              </div>
+                              :
+                              <div className={classes.container}>
+                                <div className={classes.section}>
+                                    <h3>En attente...</h3>
+                                    <Skeleton variant="rect" width={210} height={118} />
+                                    
+                                    <Skeleton width="20%"  />
+                                    <Skeleton width="40%" />
+                                    <Skeleton width="40%" />
+                                </div>
+                              </div>
+                              }
                 </div>
-            </section>
-        </main>
-    );
-
+            </div>
+        
+        
+            );
 
 };
 

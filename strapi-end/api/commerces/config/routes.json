@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/appartements",
-      "handler": "appartements.find",
+      "path": "/commerces",
+      "handler": "commerces.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/appartements/count",
-      "handler": "appartements.count",
+      "path": "/commerces/count",
+      "handler": "commerces.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/appartements/:id",
-      "handler": "appartements.findOne",
+      "path": "/commerces/:id",
+      "handler": "commerces.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/appartements",
-      "handler": "appartements.create",
+      "path": "/commerces",
+      "handler": "commerces.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/appartements/:id",
-      "handler": "appartements.update",
+      "path": "/commerces/:id",
+      "handler": "commerces.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/appartements/:id",
-      "handler": "appartements.delete",
+      "path": "/commerces/:id",
+      "handler": "commerces.delete",
       "config": {
         "policies": []
       }

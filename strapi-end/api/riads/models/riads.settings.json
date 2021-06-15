@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "villas",
+  "collectionName": "riads",
   "info": {
-    "name": "villas",
+    "name": "riads",
     "description": ""
   },
   "options": {
@@ -11,18 +11,25 @@
     "draftAndPublish": true
   },
   "attributes": {
+    "type_bien": {
+      "type": "enumeration",
+      "enum": [
+        "appartements",
+        "villas",
+        "riads",
+        "terrains",
+        "commerces"
+      ],
+      "default": "riads"
+    },
     "titre": {
       "type": "string"
     },
     "description": {
       "type": "text"
     },
-    "type_transaction": {
-      "type": "enumeration",
-      "enum": [
-        "vente",
-        "location"
-      ]
+    "prestations": {
+      "type": "text"
     },
     "images": {
       "collection": "file",
@@ -36,18 +43,28 @@
       "required": false,
       "pluginOptions": {}
     },
-    "prix": {
-      "type": "biginteger"
-    },
-    "nbr_chambre": {
-      "type": "integer"
+    "type_transaction": {
+      "type": "enumeration",
+      "enum": [
+        "vente",
+        "location"
+      ]
     },
     "surface": {
       "type": "integer"
     },
+    "prix": {
+      "type": "biginteger"
+    },
     "disponible": {
       "type": "boolean",
       "default": true
+    },
+    "renover": {
+      "type": "boolean"
+    },
+    "nbr_chambre": {
+      "type": "integer"
     },
     "ville": {
       "type": "enumeration",
@@ -55,20 +72,6 @@
         "marrakech",
         "regions"
       ]
-    },
-    "prestations": {
-      "type": "text"
-    },
-    "type_bien": {
-      "type": "enumeration",
-      "enum": [
-        "appartements",
-        "villas",
-        "riads",
-        "terrains",
-        "commerces"
-      ],
-      "default": "villas"
     }
   }
 }

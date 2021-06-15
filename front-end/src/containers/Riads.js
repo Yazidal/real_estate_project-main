@@ -12,7 +12,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 const useStyles = makeStyles(styles);
 
 
-const Villas = (props) => {
+const Riads = (props) => {
     const [listings, setListings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [listingsPerPage, setListingsPerPage] = useState(9);
@@ -22,15 +22,17 @@ const Villas = (props) => {
     const indexOfFirstListing = indexOfLastListing - listingsPerPage;
     const currentListings = listings.slice(indexOfFirstListing, indexOfLastListing);
     const t =props.match.params.type_transaction;
+    const r =props.match.params.renover;
     console.log("t:",t);
-
+    console.log("r:",r);
+   
     const classes = useStyles();
 
 
     const graphqlQuery= {
-        query:`query villas($type_transaction:String!)
+        query:`query riads($type_transaction:String!,$renover:Boolean!)
         {
-        villas(sort:"created_at:desc", where:{type_transaction:$type_transaction})
+        riads(sort:"created_at:desc", where:{type_transaction:$type_transaction,renover:$renover})
         {
             id
             created_at
@@ -41,15 +43,16 @@ const Villas = (props) => {
             surface
             disponible
             type_bien
-            nbr_chambre
             ville
             titre
+            renover
             images{url}
         }
         }`,
         variables:{
 
             type_transaction: t,
+            renover : r === "true"?true:false
 
         }
     };
@@ -91,7 +94,7 @@ const Villas = (props) => {
              
          }).then(res=>{
            console.log("resu",res);
-            setListings(res["villas"]);
+            setListings(res["riads"]);
              window.scrollTo(0, 0);
          })
          .catch(err => {
@@ -159,4 +162,4 @@ const Villas = (props) => {
 
 };
 
-export default Villas;
+export default Riads;

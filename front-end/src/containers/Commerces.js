@@ -11,8 +11,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles(styles);
 
-
-const Villas = (props) => {
+const Commerces = (props) => {
     const [listings, setListings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [listingsPerPage, setListingsPerPage] = useState(9);
@@ -28,9 +27,9 @@ const Villas = (props) => {
 
 
     const graphqlQuery= {
-        query:`query villas($type_transaction:String!)
+        query:`query commerces($type_transaction:String!)
         {
-        villas(sort:"created_at:desc", where:{type_transaction:$type_transaction})
+        commerces(sort:"created_at:desc", where:{type_transaction:$type_transaction})
         {
             id
             created_at
@@ -41,7 +40,6 @@ const Villas = (props) => {
             surface
             disponible
             type_bien
-            nbr_chambre
             ville
             titre
             images{url}
@@ -91,7 +89,7 @@ const Villas = (props) => {
              
          }).then(res=>{
            console.log("resu",res);
-            setListings(res["villas"]);
+            setListings(res["commerces"]);
              window.scrollTo(0, 0);
          })
          .catch(err => {
@@ -104,59 +102,59 @@ const Villas = (props) => {
 
 
 
-        return (
+    return (
 
-            <div>
-                <Parallax
-                small
-                filter
-                image={require("assets/img/bgkech.jpg").default}
-              />
-        
-                <div className={classNames(classes.main, classes.mainRaised)}>
-                { 
-                              listings.length !==0
-                              ?
-                              <div>
-                                  <Listings listings={currentListings} />
-        
-                                  <div>
-                                      <div className='row' >
-                                          {
-                                              listings.length !== 0 ? (
-                                                  <Pagination
-                                                      itemsPerPage={listingsPerPage}
-                                                      count={listings.length}
-                                                      visitPage={visitPage}
-                                                      previous={previous_number}
-                                                      next={next_number}
-                                                      active={active}
-                                                      setActive={setActive}
-                                                  />
-                                              ) : null
-                                          }
-                                      </div>
-                                  </div>
+    <div>
+        <Parallax
+        small
+        filter
+        image={require("assets/img/bgkech.jpg").default}
+      />
+
+        <div className={classNames(classes.main, classes.mainRaised)}>
+        { 
+                      listings.length !==0
+                      ?
+                      <div>
+                          <Listings listings={currentListings} />
+
+                          <div>
+                              <div className='row' >
+                                  {
+                                      listings.length !== 0 ? (
+                                          <Pagination
+                                              itemsPerPage={listingsPerPage}
+                                              count={listings.length}
+                                              visitPage={visitPage}
+                                              previous={previous_number}
+                                              next={next_number}
+                                              active={active}
+                                              setActive={setActive}
+                                          />
+                                      ) : null
+                                  }
                               </div>
-                              :
-                              <div className={classes.container}>
-                                <div className={classes.section}>
-                                    <h3>En attente...</h3>
-                                    <Skeleton variant="rect" width={210} height={118} />
-                                    
-                                    <Skeleton width="20%"  />
-                                    <Skeleton width="40%" />
-                                    <Skeleton width="40%" />
-                                </div>
-                              </div>
-                              }
-                </div>
-            </div>
-        
-        
-            );
+                          </div>
+                      </div>
+                      :
+                      <div className={classes.container}>
+                        <div className={classes.section}>
+                            <h3>En attente...</h3>
+                            <Skeleton variant="rect" width={210} height={118} />
+                            
+                            <Skeleton width="20%"  />
+                            <Skeleton width="40%" />
+                            <Skeleton width="40%" />
+                        </div>
+                      </div>
+                      }
+        </div>
+    </div>
+
+
+    );
 
 
 };
 
-export default Villas;
+export default Commerces;

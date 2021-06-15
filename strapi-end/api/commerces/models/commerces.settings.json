@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "villas",
+  "collectionName": "commerces",
   "info": {
-    "name": "villas",
+    "name": "commerces",
     "description": ""
   },
   "options": {
@@ -15,6 +15,12 @@
       "type": "string"
     },
     "description": {
+      "type": "text"
+    },
+    "prix": {
+      "type": "biginteger"
+    },
+    "prestations": {
       "type": "text"
     },
     "type_transaction": {
@@ -36,19 +42,6 @@
       "required": false,
       "pluginOptions": {}
     },
-    "prix": {
-      "type": "biginteger"
-    },
-    "nbr_chambre": {
-      "type": "integer"
-    },
-    "surface": {
-      "type": "integer"
-    },
-    "disponible": {
-      "type": "boolean",
-      "default": true
-    },
     "ville": {
       "type": "enumeration",
       "enum": [
@@ -56,8 +49,12 @@
         "regions"
       ]
     },
-    "prestations": {
-      "type": "text"
+    "surface": {
+      "type": "integer"
+    },
+    "disponible": {
+      "type": "boolean",
+      "default": true
     },
     "type_bien": {
       "type": "enumeration",
@@ -68,7 +65,7 @@
         "terrains",
         "commerces"
       ],
-      "default": "villas"
+      "default": "commerces"
     }
   }
 }

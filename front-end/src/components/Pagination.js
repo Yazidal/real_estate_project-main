@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from "@material-ui/core/Button";
+
+import "components/Pagination.css";
 
 const pagination = (props) => {
     const getNumbers = () => {
@@ -10,21 +13,21 @@ const pagination = (props) => {
         for (let i = 0; i < props.count; i += itemsPerPage) {
             const page = pageNumber;
             let style = 'pagination__number';
+            let style2 = 'pagination__number__active';
             let content = null;
 
             if (props.active === page) {
-                style = 'pagination__number pagination__number--active';
                 content = (
-                    <div key={i} className={style}>
-                        {pageNumber}
-                    </div>
+                    <Button key={i}  variant="contained" style={{ cursor:"default", color:"white", backgroundColor:"#CA5335"}}>
+                         {pageNumber}
+                    </Button>
                 );
             }
             else {
                 content = (
-                    <div key={i} onClick={() => props.visitPage(page)} className={style}>
+                    <Button key={i} onClick={() => props.visitPage(page)} className={style}>
                         {pageNumber}
-                    </div>
+                    </Button>
                 );
             }
 
@@ -38,14 +41,14 @@ const pagination = (props) => {
     };
     
     return (
-        <div className='pagination'>
-            <div onClick={() => props.previous()} className='pagination__number'>
+        <div className='pagination' style={{padding:25}} >
+            <Button variant="outlined" onClick={() => props.previous()} className='pagination__number'>
                 Previous
-            </div>
+            </Button>
             {getNumbers()}
-            <div onClick={() => props.next()} className='pagination__number'>
+            <Button variant="outlined" onClick={() => props.next()} className='pagination__number'>
                 Next
-            </div>
+            </Button>
         </div>
     );
 };

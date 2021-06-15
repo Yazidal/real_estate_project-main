@@ -1,0 +1,39 @@
+.pagination {
+ 
+  justify-content: center;
+
+
+  display: flex;
+  border-radius: "4px";
+}
+
+.pagination__number{
+
+  letter-spacing: "unset";
+  border: "0";
+  border-radius: "30px !important";
+  transition: "all .3s";
+  padding: "0px 11px";
+  margin: "0 3px";
+  min-width: "30px";
+  height: "30px";
+  min-height: "auto";
+  line-height: "30px";
+  font-weight: "400";
+  font-size: "12px";
+  text-transform: "uppercase";
+  background: "transparent";
+  position: "relative";
+  float: "left";
+  text-decoration: "none";
+  box-sizing: "border-box";
+
+  background-color: "#eee";
+  border-color: "#ddd"
+}
+
+.pagination__number:hover {
+  color: #CA5335;
+  border-color: #CA5335;
+}
+

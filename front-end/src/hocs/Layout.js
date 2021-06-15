@@ -11,7 +11,7 @@ const layout = (props) => (
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: 200,
           color: "white",
         }}
       />
